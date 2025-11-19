@@ -1,0 +1,18 @@
+$prefix: 'xc';
+
+$breakpoint-xl: 1260px;
+$breakpoint-lg: 991px;
+$breakpoint-md: 767px;
+$breakpoint-sm: 575px;
+
+$breakpoints: (
+  'xl-min': $breakpoint-xl + 1,
+  'xl-max': $breakpoint-xl,
+  'lg-min': $breakpoint-lg + 1,
+  'lg-max': $breakpoint-lg,
+  'md-min': $breakpoint-md + 1,
+  'md-max': $breakpoint-md,
+  'sm-min': $breakpoint-sm + 1,
+  'sm-max': $breakpoint-sm,
+);
+

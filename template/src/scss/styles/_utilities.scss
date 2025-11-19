@@ -1,0 +1,281 @@
+@use 'variables';
+@use "sass:math";
+@use "sass:string";
+@use "sass:list";
+@use "sass:map";
+
+// Margin & Padding Utilities Generator
+@for $i from 0 through 100 {
+  // Margin
+  .m#{$i} { margin: #{$i}px !important; }
+  .mt#{$i} { margin-top: #{$i}px !important; }
+  .mb#{$i} { margin-bottom: #{$i}px !important; }
+  .ml#{$i} { margin-left: #{$i}px !important; }
+  .mr#{$i} { margin-right: #{$i}px !important; }
+  
+  // Padding
+  .p#{$i} { padding: #{$i}px !important; }
+  .pt#{$i} { padding-top: #{$i}px !important; }
+  .pb#{$i} { padding-bottom: #{$i}px !important; }
+  .pl#{$i} { padding-left: #{$i}px !important; }
+  .pr#{$i} { padding-right: #{$i}px !important; }
+
+  // Width (px and %)
+  .w#{$i}per { width: #{$i + '%'} !important; }
+
+  // Height (px and %)
+  .h#{$i}per { height: #{$i + '%'} !important; }
+
+  // Font size
+  .fs-#{$i} { font-size: #{$i}px; }
+}
+
+@for $i from 0 through 1000 {
+  // Width (px)
+  .w#{$i}px { width: #{$i}px !important; }
+
+  // Height (px)
+  .h#{$i}px { height: #{$i}px !important; }
+}
+
+// Gap utilities
+@for $i from 0 through 100 {
+  // 기본 gap (단일 값)
+  .gap#{$i} { 
+    gap: #{$i}px !important;
+  }
+}
+
+// 자주 사용되는 spacing 값 정의
+$common-spacing: (0, 4, 8, 10, 12, 16, 20, 24, 28, 30, 32);
+
+// 자주 사용되는 gap 값들에 대해서만 다중 값 설정
+@each $i in $common-spacing {
+  // 수평/수직 gap (2개 값)
+  @each $j in $common-spacing {
+    .gap#{$i}-#{$j} {
+      gap: #{$i}px #{$j}px !important;
+    }
+  }
+  
+  // 상/좌우/하 gap (3개 값)
+  @each $j in $common-spacing {
+    @each $k in $common-spacing {
+      .gap#{$i}-#{$j}-#{$k} {
+        gap: #{$i}px #{$j}px #{$k}px !important;
+      }
+    }
+  }
+  
+  // 상/우/하/좌 gap (4개 값)
+  @each $j in $common-spacing {
+    @each $k in $common-spacing {
+      @each $l in $common-spacing {
+        .gap#{$i}-#{$j}-#{$k}-#{$l} {
+          gap: #{$i}px #{$j}px #{$k}px #{$l}px !important;
+        }
+      }
+    }
+  }
+}
+
+// Responsive Utilities Mixins
+@mixin responsive-spacing($breakpoint) {
+  @for $i from 0 through 100 {
+    // Margin
+    .#{variables.$prefix}-#{$breakpoint}-m#{$i} { margin: #{$i}px !important; }
+    .#{variables.$prefix}-#{$breakpoint}-mt#{$i} { margin-top: #{$i}px !important; }
+    .#{variables.$prefix}-#{$breakpoint}-mb#{$i} { margin-bottom: #{$i}px !important; }
+    .#{variables.$prefix}-#{$breakpoint}-ml#{$i} { margin-left: #{$i}px !important; }
+    .#{variables.$prefix}-#{$breakpoint}-mr#{$i} { margin-right: #{$i}px !important; }
+    
+    // Padding
+    .#{variables.$prefix}-#{$breakpoint}-p#{$i} { padding: #{$i}px !important; }
+    .#{variables.$prefix}-#{$breakpoint}-pt#{$i} { padding-top: #{$i}px !important; }
+    .#{variables.$prefix}-#{$breakpoint}-pb#{$i} { padding-bottom: #{$i}px !important; }
+    .#{variables.$prefix}-#{$breakpoint}-pl#{$i} { padding-left: #{$i}px !important; }
+    .#{variables.$prefix}-#{$breakpoint}-pr#{$i} { padding-right: #{$i}px !important; }
+
+    // Width & Height (percentage)
+    .#{variables.$prefix}-#{$breakpoint}-w#{$i}per { width: #{$i + '%'} !important; }
+    .#{variables.$prefix}-#{$breakpoint}-h#{$i}per { height: #{$i + '%'} !important; }
+
+    // Gap utilities
+    // 기본 gap (단일 값)
+    .#{variables.$prefix}-#{$breakpoint}-gap#{$i} { 
+      gap: #{$i}px !important; 
+    }
+  }
+
+  // 자주 사용되는 gap 값들에 대해서만 다중 값 설정
+  @each $i in $common-spacing {
+    // 수평/수직 gap (2개 값)
+    @each $j in $common-spacing {
+      .#{variables.$prefix}-#{$breakpoint}-gap#{$i}-#{$j} {
+        gap: #{$i}px #{$j}px !important;
+      }
+    }
+    
+    // 상/좌우/하 gap (3개 값)
+    @each $j in $common-spacing {
+      @each $k in $common-spacing {
+        .#{variables.$prefix}-#{$breakpoint}-gap#{$i}-#{$j}-#{$k} {
+          gap: #{$i}px #{$j}px #{$k}px !important;
+        }
+      }
+    }
+    
+    // 상/우/하/좌 gap (4개 값)
+    @each $j in $common-spacing {
+      @each $k in $common-spacing {
+        @each $l in $common-spacing {
+          .#{variables.$prefix}-#{$breakpoint}-gap#{$i}-#{$j}-#{$k}-#{$l} {
+            gap: #{$i}px #{$j}px #{$k}px #{$l}px !important;
+          }
+        }
+      }
+    }
+  }
+
+  @for $i from 0 through 1000 {
+    // Width & Height (pixels)
+    .#{variables.$prefix}-#{$breakpoint}-w#{$i}px { width: #{$i}px !important; }
+    .#{variables.$prefix}-#{$breakpoint}-h#{$i}px { height: #{$i}px !important; }
+  }
+}
+
+// Responsive Font
+@mixin responsive-font($breakpoint) {
+  @each $size in (12, 14, 16, 20, 24, 28, 32, 36, 40, 44, 48) {
+    .#{variables.$prefix}-#{$breakpoint}-fs-#{$size} {
+      font-size: #{$size}px !important;
+    }
+  }
+}
+
+// Sort and group breakpoints
+$min-breakpoint-names: ('sm-min', 'md-min', 'lg-min', 'xl-min');
+$max-breakpoint-names: ('xl-max', 'lg-max', 'md-max', 'sm-max');
+
+// Handle min-width breakpoints (small to large)
+@each $name in $min-breakpoint-names {
+  @if map.has-key(variables.$breakpoints, $name) {
+    $value: map.get(variables.$breakpoints, $name);
+    @media (min-width: $value) {
+      @include responsive-font($name);
+      @include responsive-spacing($name);
+    }
+  }
+}
+
+// Handle max-width breakpoints (large to small)
+@each $name in $max-breakpoint-names {
+  @if map.has-key(variables.$breakpoints, $name) {
+    $value: map.get(variables.$breakpoints, $name);
+    @media (max-width: $value) {
+      @include responsive-font($name);
+      @include responsive-spacing($name);
+    }
+  }
+}
+
+// Flex Box Setup
+@mixin flex-box-setup($prefix, $spacings, $columns) {
+  ul.flex-box--#{$prefix} {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-top: -30px;
+
+    > li {
+      margin-top: 30px;
+      list-style: none;
+      box-sizing: border-box;
+    }
+
+    @each $space in $spacings {
+      &.space-top-#{$space} {
+        margin-top: -#{$space}px;
+
+        > li {
+          margin-top: #{$space}px;
+        }
+      }
+
+      &.space-#{$space} {
+        margin-right: -#{$space}px;
+        margin-left: -#{$space}px;
+
+        > li {
+          padding: 0 #{$space}px;
+        }
+      }
+    }
+
+    @each $col in $columns {
+      &.ea-#{$col} > li {
+        width: math.div(100%, $col);
+      }
+    }
+  }
+
+  // Handle max-width breakpoints (large to small)
+  @each $name in ('xl', 'lg', 'md', 'sm') {
+    @if map.has-key(variables.$breakpoints, #{$name}-max) {
+      $value: map.get(variables.$breakpoints, #{$name}-max);
+      @media (max-width: $value) {
+        ul.flex-box--#{$prefix} {
+          @each $col in $columns {
+            &.ea-#{$name}-#{$col} > li {
+              width: math.div(100%, $col);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include flex-box-setup(variables.$prefix, (6, 10, 12, 20, 30, 40), (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12));
+
+@mixin breakpoint($point) {
+  @if map.has-key(variables.$breakpoints, $point) {
+    @if string.index($point, 'min') {
+      @media (min-width: map.get(variables.$breakpoints, $point)) {
+        @content;
+      }
+    } @else {
+      @media (max-width: map.get(variables.$breakpoints, $point)) {
+        @content;
+      }
+    }
+  }
+}
+
+/* scrollbar style */
+@mixin scrollbar-style {
+  /* Chrome, Safari, Opera */
+	&::-webkit-scrollbar {
+		height: 2px;
+	}
+	&::-webkit-scrollbar-track {
+		background: #01082b;
+	}
+	&::-webkit-scrollbar-thumb {
+		background: #1a2142;
+	}
+	&::-webkit-scrollbar-button {
+		display: none;
+		width: 0;
+		height: 0;
+	}
+
+	/* Firefox */
+	scrollbar-width: thin;
+	scrollbar-color: #1a2142 #01082b;
+
+	/* IE, Edge */
+	-ms-overflow-style: none;
+}

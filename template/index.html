@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <title>Guide</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <script type="text/javascript" src="dist/assets/libs/jquery/jquery-3.7.1.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Malgun Gothic', '맑은 고딕', Verdana, Tahoma, '돋움', Dotum, '굴림', Gulim, Geneva, sans-serif, Apple Gothic, AppleGothic;
+      }
+      li {
+        list-style: none;
+      }
+      body {
+        font-size: 13px;
+      }
+      a {
+        color: #444;
+        text-decoration: none;
+      }
+      a:hover {
+        color: #aaa;
+      }
+      a:visited,
+      a:focus,
+      a:active {
+        color: #aaa;
+      }
+
+      .is-emphasis {
+        font-weight: 700;
+        color: #ff4040;
+      }
+      .is-emphasis.is-mwk {
+        color: #1919ff;
+      }
+      .index-wrap {
+        box-sizing: border-box;
+        min-width: 1900px;
+        padding: 20px;
+      }
+      .index-title {
+        font-size: 30px;
+        line-height: 40px;
+        margin: 0 0 20px;
+      }
+      .index-links:before {
+        content: '';
+        display: table;
+      }
+      .index-links__inner {
+        margin: -10px 0 0 -10px;
+      }
+      .index-links__inner:after {
+        content: '';
+        display: table;
+        clear: both;
+      }
+      .index-links a {
+        display: block;
+        margin: 10px 0 0 10px;
+        float: left;
+        padding: 5px 15px;
+        font-size: 14px;
+        line-height: 20px;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        background: #666;
+      }
+      .index-gnb {
+        margin: 20px 0;
+      }
+      .index-bottom {
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        min-width: 1900px;
+        box-sizing: border-box;
+        padding: 10px 20px;
+        background: rgba(0, 0, 0, 0.4);
+      }
+      .index-bottom a {
+        background-color: #004e42;
+      }
+      .index-section + .index-section {
+        margin-top: 20px;
+      }
+      .index-section--clicked {
+        border-radius: 5px;
+        -webkit-animation: index-section-clicked 0.8s linear;
+        animation: index-section-clicked 0.8s linear;
+      }
+      @-webkit-keyframes index-section-clicked {
+        0% {
+          background-color: rgba(255, 202, 222, 0);
+        }
+        30% {
+          background-color: rgba(255, 202, 222, 0.3);
+        }
+        70% {
+          background-color: rgba(255, 202, 222, 0.3);
+        }
+        100% {
+          background-color: rgba(255, 202, 222, 0);
+        }
+      }
+      @keyframes index-section-clicked {
+        0% {
+          background-color: rgba(255, 202, 222, 0);
+        }
+        30% {
+          background-color: rgba(255, 202, 222, 0.3);
+        }
+        70% {
+          background-color: rgba(255, 202, 222, 0.3);
+        }
+        100% {
+          background-color: rgba(255, 202, 222, 0);
+        }
+      }
+      .index-section__title {
+        margin: 0;
+        padding: 5px 15px;
+        font-size: 14px;
+        line-height: 20px;
+        color: #fff;
+        border-radius: 5px 5px 0 0;
+        background: #333;
+      }
+      .index-table > table {
+        width: 100%;
+        table-layout: fixed;
+        margin: 0;
+        padding: 0;
+        border-spacing: 0;
+        box-sizing: border-box;
+      }
+      .index-table > table > thead > tr > th,
+      .index-table > table > tbody > tr > th,
+      .index-table > table > tbody > tr > td {
+        box-sizing: border-box;
+        font-size: 12px;
+        line-height: 18px;
+        text-align: left;
+        padding: 5px 15px;
+        border: 0 solid #cdcdcd;
+        border-width: 0 1px 1px 0;
+        background: none;
+        word-break: keep-all;
+        word-wrap: break-word;
+      }
+      .index-table > table > tbody > tr:not(.is_hide):hover > th,
+      .index-table > table > tbody > tr:not(.is_hide):hover > td {
+        background-color: #f6f6f6;
+      }
+      .index-table > table > thead > tr > th:first-child,
+      .index-table > table > tbody > tr > th:first-child,
+      .index-table > table > tbody > tr > td:first-child {
+        border-left-width: 1px;
+      }
+      .index-table > table > thead > tr > th {
+        border-top-width: 1px;
+      }
+      .index-table > table > thead > tr > th,
+      .index-table > table > tbody > tr > th {
+        background-color: #e8e8e8;
+      }
+      .index-table > table > tbody > tr.is_delete > th,
+      .index-table > table > tbody > tr.is_delete > td {
+        background-color: #ddd !important;
+      }
+      .index-table > table > tbody > tr:last-child > td:first-child {
+        border-radius: 0 0 0 5px;
+      }
+      .index-table > table > tbody > tr:last-child > td:last-child {
+        border-radius: 0 0 5px 0;
+      }
+      .index-table > table > tbody > tr.is_hide {
+        display: none;
+      }
+      .index-table > table > tbody > tr td.is_transparent {
+        color: transparent !important;
+      }
+      .index-status {
+        display: block;
+        padding: 3px 8px;
+        margin: -3px 0;
+        background: #999;
+        color: #fff;
+        border-radius: 5px;
+        text-align: center;
+      }
+      .index-status--confirm {
+        background-color: #efab3c;
+      }
+      .index-status--end {
+        background-color: #009178;
+      }
+      .index-status--modify {
+        background-color: #dc231e;
+      }
+      .index-status--moding {
+        background-color: #f8d6d4;
+        color: #333;
+      }
+      .index-status--del {
+        background-color: #888;
+      }
+      .index-log {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .index-log__item {
+        position: relative;
+        padding-left: 72px;
+      }
+      .index-log__item__date {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .index-text {
+        margin-bottom: 20px;
+      }
+      .index-type {
+        color: #2b5cd9;
+      }
+
+      .tabs {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      .tabs a {
+        position: relative;
+        display: table-cell;
+        padding: 10px 0;
+        background: #eee;
+        border-right: solid 1px #fff;
+        font-weight: bold;
+        color: #666;
+        text-align: center;
+        transition: all 0.3s;
+      }
+      .tabs a:last-child {
+        border: none;
+      }
+      .tabs a.on,
+      .tabs a:hover {
+        background: #00907f;
+        color: #fff;
+      }
+      .tabs i {
+        display: inline-block;
+        width: 14px;
+        height: 13px;
+        margin-left: 5px;
+        font-style: normal;
+        background: #dc231e;
+        color: #fff;
+        font-size: 10px;
+        line-height: 12px;
+        text-align: center;
+        transition: all 0.3s;
+      }
+      .tabs a.on i,
+      .tabs a:hover i {
+        background: #fff;
+        color: #00907f;
+      }
+
+      .marker {
+        margin: -4px 0 23px;
+      }
+      .marker li {
+        position: relative;
+        float: left;
+        padding: 0 20px 0 20px;
+        font-size: 12px;
+      }
+      .marker li:before {
+        position: absolute;
+        left: 0;
+        top: 2px;
+        width: 15px;
+        height: 15px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        content: '';
+      }
+      .marker li.m2:before {
+        background: #ddf2fd;
+      }
+      .marker li.m3:before {
+        background: #ffcfd0;
+      }
+      .marker li.m4:before {
+        background: #ddd;
+        border-color: #ccc;
+      }
+      .marker li.m5:before {
+        background: #d9eac8;
+      }
+      .marker:after {
+        display: block;
+        clear: both;
+        height: 0;
+        content: '';
+      }
+
+      td.common-id {
+        position: relative;
+        padding-right: 50px !important;
+      }
+      td.common-id:after {
+        content: '����';
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        display: block;
+        font-size: 11px;
+        padding: 0 3px;
+        background: #d7ede6;
+        border: 1px solid #004e42;
+        width: 22px;
+        text-align: center;
+      }
+    </style>
+    <!-- //style -->
+
+    <!-- ie css 변수적용 -->
+    <script>
+      window.MSInputMethodContext && document.documentMode && document.write('<script src="./dist/assets/libs/ie11CustomProperties.min.js"><\/script>');
+    </script>
+  </head>
+  <body>
+    <div class="index-wrap">
+      <h1 class="index-title"></h1>
+
+      <div class="index-bottom">
+        <div class="index-links">
+          <div class="index-links__inner" id="nav"></div>
+        </div>
+      </div>
+
+      <div class="index-datas" id="indexTable"></div>
+    </div>
+
+    <div class="index-fake-botttom"></div>
+
+    <!-- script -->
+    <script>
+      var title = 'Publishing Guide List';
+      var tableData = [
+        {
+          depth1: '',
+          data: [
+            {
+              depth2: '',
+              depth3: '',
+              depth4: '',
+              depth5: '',
+              depth6: '',
+              id: '',
+              path: '',
+              status: '',
+              create: '',
+              update: '',
+              worker: '', log: [
+                //{ date: '2025.02.24', text: '', },
+              ],
+            },
+          ],
+        },
+      ];
+
+      var html = '';
+      var navHTML = '';
+      var totalIndex = 0;
+      var isNewPageClass = '';
+      var dates = (function () {
+        var array = [];
+
+        function add(date) {
+          if (typeof date === 'string' && date.length && array.indexOf(date) === -1) {
+            array.push(date);
+          }
+        }
+
+        $.each(tableData, function (i) {
+          var sectionData = tableData[i].data;
+          $.each(sectionData, function (j) {
+            add(this.create);
+            $.each(sectionData[j].log, function (l) {
+              add(this.date);
+            });
+          });
+        });
+
+        array.sort();
+
+        return array;
+      })();
+      var latestDate = dates[dates.length - 1];
+
+      $.each(tableData, function (i) {
+        var sectionIndex = i;
+        var sectionData = tableData[i].data;
+        var tableHTML = '';
+        var lastVisibleRowIndex = -1; // 마지막으로 보이는 행의 인덱스를 추적
+
+        $.each(sectionData, function (j) {
+          var returnVal = function (key, secondTestKey) {
+            var val = sectionData[j][key];
+            var secondTestVal = sectionData[j][secondTestKey];
+            var prevIndex = j - 1;
+            var isPrint = true;
+            // if (prevIndex >= 0) {
+            //   if (sectionData[prevIndex][key] === val && key !== 'type') {
+            //     isPrint = false;
+            //   }
+            //   if (typeof secondTestKey === 'string' && secondTestKey.length && !sectionData[j].depthOnly) {
+            //     if (sectionData[prevIndex][key] === val && sectionData[prevIndex][secondTestKey] === secondTestVal) {
+            //       isPrint = false;
+            //     } else {
+            //       isPrint = true;
+            //     }
+            //   }
+            // }
+            return isPrint ? val.replace(/\n/g, '<br>') : '';
+          };
+          var id = returnVal('id');
+          // var type = returnVal('type');
+          var depth2 = returnVal('depth2');
+          var depth3 = returnVal('depth3');
+          var depth4 = returnVal('depth4');
+          var depth5 = returnVal('depth5');
+          var depth6 = returnVal('depth6');
+          var path = (function () {
+            var val = sectionData[j].path;
+            var href = '';
+            if (val.match(/^\.\//g)) {
+              href = val;
+            } else {
+              href = '.dist/pages' + val;
+            }
+            return val.length ? '<a href="' + href + '" target="_blank">' + val + '</a>' : '';
+          })();
+          var status = (function () {
+            var val = sectionData[j].status;
+            var text = '';
+            if (val === 'end') {
+              text = '작업완료';
+            } else if (val === 'modify') {
+              text = '수정완료';
+            } else if (val === 'moding') {
+              text = '수정필요';
+            } else if (val === 'confirm') {
+              text = '검수완료';
+            } else if (val === 'del') {
+              text = '삭제';
+            }
+            return val.length ? '<span class="index-status index-status--' + val + '">' + text + '</span>' : '';
+          })();
+          var create = this.create;
+          var worker = this.worker;
+          var update = '';
+          var log = (function () {
+            var val = sectionData[j].log;
+            var length = val.length;
+            var html = '<ul class="index-log">';
+            $.each(val, function (l) {
+              var date = this.date;
+              html +=
+                '<li class="index-log__item' + (date === latestDate ? ' is-emphasis' : '') + '"><div class="index-log__item__date">[' + date + ']</div>' + this.text.replace(/\n/g, '<br>') + '</li>';
+              if (length - 1 === l) {
+                update = date;
+              }
+            });
+            html += '</ul>';
+
+            return html;
+          })();
+
+          tableHTML +=
+            '<tr>' +
+            '<td>' +
+            (j + 1) +
+            '</td>' +
+            '<td>' +
+            depth2 +
+            '</td>' +
+            '<td>' +
+            depth3 +
+            '</td>' +
+            '<td>' +
+            depth4 +
+            '</td>' +
+            '<td>' +
+            depth5 +
+            '</td>' +
+            '<td>' +
+            depth6 +
+            '</td>' +
+            '<td ' +
+            (id.trim() && 'data-screen-id="' + id.trim() + '"') +
+            '>' +
+            id +
+            '</td>' +
+            '<td class="data-path">' +
+            path +
+            '</td>' +
+            '<td class="data-status">' +
+            status +
+            '</td>' +
+            '<td class="data-create"><span class="' +
+            (create === latestDate ? 'is-emphasis' : '') +
+            '">' +
+            create +
+            '</span></td>' +
+            '<td class="data-worker">' +
+            worker +
+            '</td>' +
+            '<td class="data-update"><span class="' +
+            (update === latestDate ? 'is-emphasis' : '') +
+            '">' +
+            update +
+            '</span></td>' +
+            '<td class="data-log">' +
+            log +
+            '</td>' +
+            '</tr>';
+
+          totalIndex++;
+        });
+
+        navHTML += '<a href="#section' + i + '">' + tableData[i].depth1 + '</a>';
+
+        html +=
+          '<div class="index-section" id="section' +
+          i +
+          '">' +
+          '<h2 class="index-section__title">' +
+          tableData[i].depth1 +
+          '</h2>' +
+          '<div class="index-table">' +
+          '<table>' +
+          '<colgroup>' +
+          '<col width="60px" />' +
+          '<col width="160px" />' +
+          '<col width="160px" />' +
+          '<col width="160px" />' +
+          '<col width="160px" />' +
+          '<col width="160px" />' +
+          '<col width="160px" />' +
+          '<col width="" />' +
+          '<col width="100px" />' +
+          '<col width="100px" />' +
+          '<col width="80px" />' +
+          '<col width="100px" />' +
+          '<col width="300px" />' +
+          '</colgroup>' +
+          '<thead>' +
+          '<tr>' +
+          '<th>No</th>' +
+          '<th>Depth2</th>' +
+          '<th>Depth3</th>' +
+          '<th>Depth4</th>' +
+          '<th>Depth5</th>' +
+          '<th>Depth6</th>' +
+          '<th>ID</th>' +
+          '<th>Path</th>' +
+          '<th>Status</th>' +
+          '<th>Create</th>' +
+          '<th>Worker</th>' +
+          '<th>Update</th>' +
+          '<th>Log</th>' +
+          '</tr>' +
+          '</thead>' +
+          '<tbody>' +
+          tableHTML +
+          '</tbody>' +
+          '</table>' +
+          '</div>' +
+          '</div>';
+      });
+
+      $('title, .index-title').text(title);
+      $('#nav').append(navHTML);
+      $('#indexTable').append(
+        $(html)
+          .hide()
+          .fadeIn(10, function () {
+            $('.index-status--del').each(function () {
+              $(this).closest('tr').addClass('is_delete');
+            });
+
+            var screenIdGroup = {};
+
+            $('[data-screen-id]').each(function () {
+              var valId = $(this).attr('data-screen-id');
+              if (!screenIdGroup[valId]) {
+                screenIdGroup[valId] = [];
+              }
+              screenIdGroup[valId].push($(this).closest('tr'));
+            });
+
+            $.each(screenIdGroup, function (valId, rows) {
+              var createVal = '';
+              var pathVal = '';
+              var statusVal = '';
+              var workerVal = '';
+              var updateVal = '';
+              var logVal = '';
+
+              $.each(rows, function (index, $row) {
+                if (index > 0) {
+                  $row.addClass('is_hide');
+                }
+                var tempCreate = $row.find('.data-create').html().trim();
+                var tempPath = $row.find('.data-path').html().trim();
+                var tempStatus = $row.find('.data-status').html().trim();
+                var tempWorker = $row.find('.data-worker').html().trim();
+                var tempUpdate = $row.find('.data-update').html().trim();
+                var tempLog = $row.find('.data-log').html().trim();
+
+                if (tempCreate && !createVal) createVal = tempCreate;
+                if (tempPath && !pathVal) pathVal = tempPath;
+                if (tempStatus && !statusVal) statusVal = tempStatus;
+                if (tempWorker && !workerVal) workerVal = tempWorker;
+                if (tempUpdate && !updateVal) updateVal = tempUpdate;
+                if (tempLog && !logVal) logVal = tempLog;
+              });
+
+              $.each(rows, function (_, $row) {
+                if (createVal) $row.find('.data-create').html(createVal);
+                if (pathVal) $row.find('.data-path').html(pathVal);
+                if (statusVal) $row.find('.data-status').html(statusVal);
+                if (workerVal) $row.find('.data-worker').html(workerVal);
+                if (updateVal) $row.find('.data-update').html(updateVal);
+                if (logVal) $row.find('.data-log').html(logVal);
+              });
+
+              if (rows.length >= 2) {
+                $.each(rows, function (_, $row) {
+                  $row.find('[data-screen-id]').addClass('common-id');
+                });
+              }
+            });
+
+            $('.index-table tbody tr').each(function (index) {
+              var $row = $(this);
+              var depth2 = $row.find('td:nth-child(2)').text().trim();
+              var depth3 = $row.find('td:nth-child(3)').text().trim();
+              var depth4 = $row.find('td:nth-child(4)').text().trim();
+              var depth5 = $row.find('td:nth-child(5)').text().trim();
+              var depth6 = $row.find('td:nth-child(6)').text().trim();
+
+              if (index > 0) {
+                var $prevRow = $row.prev();
+
+                // 이전 행이 숨겨져 있으면 숨겨지지 않은 행을 찾을 때까지 거슬러 올라감
+                while ($prevRow.length && $prevRow.hasClass('is_hide')) {
+                  $prevRow = $prevRow.prev();
+                }
+
+                if ($prevRow.length) {
+                  var prevDepth2 = $prevRow.find('td:nth-child(2)').text().trim();
+                  var prevDepth3 = $prevRow.find('td:nth-child(3)').text().trim();
+                  var prevDepth4 = $prevRow.find('td:nth-child(4)').text().trim();
+                  var prevDepth5 = $prevRow.find('td:nth-child(5)').text().trim();
+                  var prevDepth6 = $prevRow.find('td:nth-child(6)').text().trim();
+
+                  if (depth2 === prevDepth2) {
+                    $row.find('td:nth-child(2)').addClass('is_transparent');
+                  }
+                  if (depth3 === prevDepth3) {
+                    $row.find('td:nth-child(3)').addClass('is_transparent');
+                  }
+                  if (depth4 === prevDepth4) {
+                    $row.find('td:nth-child(4)').addClass('is_transparent');
+                  }
+                  if (depth5 === prevDepth5) {
+                    $row.find('td:nth-child(5)').addClass('is_transparent');
+                  }
+                  if (depth6 === prevDepth6) {
+                    $row.find('td:nth-child(6)').addClass('is_transparent');
+                  }
+                }
+              }
+            });
+          })
+      );
+
+      var $nav = $('.index-bottom');
+      var $doc = $(document);
+      var $win = $(window);
+
+      function paddingBottom() {
+        $('.index-fake-botttom').css('height', $nav.outerHeight());
+      }
+
+      var clickedTimer = null;
+
+      $doc.on('click', '#nav a', function () {
+        var $this = $(this);
+        var href = $this.attr('href');
+        var $target = $(href);
+        var $sections = $('.index-section');
+
+        $sections.removeClass('index-section--clicked');
+
+        clearTimeout(clickedTimer);
+
+        clickedTimer = setTimeout(function () {
+          $target.addClass('index-section--clicked');
+        }, 100);
+      });
+
+      $win
+        .on('scroll', function () {
+          var scrollLeft = $win.scrollLeft();
+          $nav.css('margin-left', -scrollLeft);
+        })
+        .on('resize', function () {
+          paddingBottom();
+        })
+        .on('load', function () {
+          paddingBottom();
+        });
+    </script>
+    <!-- //script -->
+  </body>
+</html>

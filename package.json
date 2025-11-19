@@ -1,0 +1,7 @@
+{
+  "name": "create-basic-starter",
+  "version": "1.0.0",
+  "bin": {
+    "create-my-starter": "./bin/create.js"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "project-name",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "sass": "sass web/src/scss:web/dist/assets/css --watch --no-source-map",
+    "build:sass": "sass web/src/scss:web/dist/assets/css --no-source-map --style=expanded",
+    "prefix": "postcss web/dist/assets/css/ui-style-ver2.css --dir web/dist/assets/css --watch --no-map",
+    "build:prefix": "postcss web/dist/assets/css/ui-style-ver2.css --replace --no-map",
+    "dev": "concurrently \"pnpm sass\" \"pnpm prefix\"",
+    "build": "pnpm build:sass && pnpm build:prefix"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "> 1%",
+    "ie >= 11"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.8.1",
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^7.0.2",
+    "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.0",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "sass": "^1.89.2"
+  }
+}

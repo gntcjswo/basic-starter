@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "bin": {
     "create-my-starter": "./bin/create.js"
+  },
+  "dependencies": {
+    "fs-extra": "^11.2.0"
   }
 }

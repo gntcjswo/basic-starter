@@ -5,10 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "sass": "sass web/src/scss:web/dist/assets/css --watch --no-source-map",
-    "build:sass": "sass web/src/scss:web/dist/assets/css --no-source-map --style=expanded",
-    "prefix": "postcss web/dist/assets/css/ui-style-ver2.css --dir web/dist/assets/css --watch --no-map",
-    "build:prefix": "postcss web/dist/assets/css/ui-style-ver2.css --replace --no-map",
+    "sass": "sass src/scss:dist/assets/css --watch --no-source-map",
+    "build:sass": "sass src/scss:dist/assets/css --no-source-map --style=expanded",
+    "prefix": "postcss dist/assets/css/ui-style.css --dir dist/assets/css --watch --no-map",
+    "build:prefix": "postcss dist/assets/css/ui-style.css --replace --no-map",
     "dev": "concurrently \"pnpm sass\" \"pnpm prefix\"",
     "build": "pnpm build:sass && pnpm build:prefix"
   },

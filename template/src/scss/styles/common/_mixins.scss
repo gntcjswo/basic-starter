@@ -1,0 +1,50 @@
+@use 'variables';
+
+// Breakpoint Mixins
+@mixin sm-max {
+  @media (max-width: #{variables.$breakpoint-sm}) {
+    @content;
+  }
+}
+
+@mixin sm-min {
+  @media (min-width: #{variables.$breakpoint-sm + 1px}) {
+    @content;
+  }
+}
+
+@mixin md-max {
+  @media (max-width: #{variables.$breakpoint-md}) {
+    @content;
+  }
+}
+
+@mixin md-min {
+  @media (min-width: #{variables.$breakpoint-md + 1px}) {
+    @content;
+  }
+}
+
+@mixin lg-max {
+  @media (max-width: #{variables.$breakpoint-lg}) {
+    @content;
+  }
+}
+
+@mixin lg-min {
+  @media (min-width: #{variables.$breakpoint-lg + 1px}) {
+    @content;
+  }
+}
+
+@mixin xl-max {
+  @media (max-width: #{variables.$breakpoint-xl}) {
+    @content;
+  }
+}
+
+@mixin xl-min {
+  @media (min-width: #{variables.$breakpoint-xl + 1px}) {
+    @content;
+  }
+}

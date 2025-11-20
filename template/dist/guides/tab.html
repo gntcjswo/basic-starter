@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <title>Guide</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <script type="text/javascript" src="dist/assets/libs/jquery/jquery-3.7.1.min.js"></script>
+
+    <link rel="stylesheet" href="../assets/css/ui-style.css" />
+
+    <style>
+      /* guide 용 css */
+      .guide_code {
+        position: relative;
+      }
+      .guide_code.on:before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(247, 130, 130, 0.1);
+        z-index: 1;
+      }
+      .btn_code_view_wrap {
+        padding: 6px 0 10px;
+      }
+      .guide_code.code_none + .btn_code_view_wrap {
+        display: none !important;
+      }
+      .btn_code_view {
+        display: flex;
+        justify-content: flex-end;
+      }
+      .btn_code_view a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #000;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 400;
+      }
+      .btn_code_view a:hover {
+        background-color: #333;
+      }
+      .guide_modal_wrap {
+        padding: 30px;
+      }
+      .guide_modal_body {
+        background: #fff;
+        max-width: 100%;
+      }
+      .guide_modal_body pre {
+        white-space: pre-wrap;
+      }
+      .guide_modal_wrap .btn_pop_close {
+        top: 2px;
+        right: 30px;
+        background-color: #000 !important;
+        transform: none !important;
+      }
+      .guide_modal_wrap .btn_pop_close:hover {
+        background-color: #333 !important;
+      }
+      .guide_modal_body pre code {
+        tab-size: 2;
+        -moz-tab-size: 2;
+      }
+
+      .t_tit ~ .t_tit {
+        margin-top: 30px;
+      }
+      pre {
+        tab-size: 4;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href="#container" accesskey="1" class="skip_area">메뉴건너뛰고 본문 바로가기</a>
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- header -->
+      <header>
+        <h1 class="sr_only">하나카드</h1>
+        <p class="guide">Header</p>
+      </header>
+      <!-- //header -->
+
+      <!-- container -->
+      <section id="container">
+        <h2 class="sr_only">가이드</h2>
+        
+        <!-- conts_section -->
+        <section class="conts_section">
+          <div class="hana2_title_box">
+            <div class="hana2_title_box__inner">
+              <h3 class="hana_title hana_title_36">Tab</h3>
+            </div>
+          </div>
+
+          <!-- cont_box -->
+          <div class="conts_section__inner bg_white">
+            <!-- cont_box_area -->
+            <div class="cont_box_area">
+              <!-- Tab Guide -->
+              <article class="cont">
+                <!-- 
+                <h4 class="t_tit">제목</h4>
+                <div class="guide_code">
+                  코드
+                </div>
+                -->
+
+                <h4 class="t_tit">모든 탭 공통 사항</h4>
+
+                <p class="mt20">탭 버튼( li 태그 )과 1:1로 매칭되는 컨텐츠 영역( li 태그 )이 존재</p>
+                <p>각 li 태그의 data-name 값이 같은 것끼리 매칭</p>
+                <p>탭 버튼의 data-name 값이 "disabled"인 경우 탭 기능을 사용하지 않고 브라우저 기본 기능(a태그의 href)을 사용할 수 있다.</p>
+                <p>탭 버튼 영역과 탭 내용 영역은 .tabname_event_wrap로 감싸야 한다.</p>
+                <b>탭 기능을 사용하지 않고 디자인으로만 사용하려면 .tabname_event_wrap로 감싸지 않고 버튼 영역만 가져다 사용</b>
+                <p>id, aria-labelledby, role, aria-selected, aria-hidden 등 접근성 관련 속성은 스크립트로 처리</p>
+
+                <p class="mt20">기본 구조</p>
+                <pre class="prettyprint mt10"><code>
+&lt;div class="tabname_event_wrap"&gt;
+	&lt;!-- 탭 버튼 --&gt;
+	&lt;div class="tabname_btn_box"&gt;
+		&lt;ul&gt;
+			&lt;li class="on" data-name="tab01"&gt;
+				&lt;a href="#tab" aria-selected="true"&gt;Tab&lt;/a&gt;
+			&lt;/li&gt;
+			&lt;li data-name="tab02"&gt;
+				&lt;a href="#tab" aria-selected="false"&gt;Tab&lt;/a&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/div&gt;
+	&lt;!-- // 탭 버튼 --&gt;
+
+	&lt;!-- 탭 내용 --&gt;
+	&lt;div class="tab_conts_box"&gt;
+		&lt;ul&gt;
+			&lt;li data-name="tab01"&gt;tab01에 대한 컨텐츠&lt;/li&gt;
+			&lt;li data-name="tab02"&gt;tab02에 대한 컨텐츠&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/div&gt;
+	&lt;!-- // 탭 내용 --&gt;
+&lt;/div&gt;</code></pre>
+
+                <h4 class="t_tit">Category</h4>
+                <div class="guide_code">
+                  <div class="tabname_event_wrap">
+                    <!-- 탭 버튼 -->
+                    <div class="tabname_btn_box tabname_btn_box--category">
+                      <ul>
+                        <li class="on" data-name="tab01">
+                          <a href="#tab">Tab</a>
+                        </li>
+                        <li data-name="tab02">
+                          <a href="#tab">Tab</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- // 탭 버튼 -->
+
+                    <!-- 탭 내용 -->
+                    <div class="tab_conts_box">
+                      <ul>
+                        <li data-name="tab01">tab01에 대한 컨텐츠</li>
+                        <li data-name="tab02">tab02에 대한 컨텐츠</li>
+                      </ul>
+                    </div>
+                    <!-- // 탭 내용 -->
+                  </div>
+                </div>
+
+                <h4 class="t_tit">Switch</h4>
+                <div class="guide_code">
+                  <div class="tabname_event_wrap">
+                    <!-- 탭 버튼 -->
+                    <div class="tabname_btn_box tabname_btn_box--switch">
+                      <ul>
+                        <li class="on" data-name="tab01">
+                          <a href="#tab">Tab</a>
+                        </li>
+                        <li data-name="tab02">
+                          <a href="#tab">Tab</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- // 탭 버튼 -->
+
+                    <!-- 탭 내용 -->
+                    <div class="tab_conts_box">
+                      <ul>
+                        <li data-name="tab01">tab01에 대한 컨텐츠</li>
+                        <li data-name="tab02">tab02에 대한 컨텐츠</li>
+                      </ul>
+                    </div>
+                    <!-- // 탭 내용 -->
+                  </div>
+                </div>
+
+                <h4 class="t_tit">Chips</h4>
+                <div class="guide_code">
+                  <div class="tabname_event_wrap">
+                    <!-- 탭 버튼 -->
+                    <div class="tabname_btn_box tabname_btn_box--chips">
+                      <ul>
+                        <li class="on" data-name="tab01">
+                          <a href="#tab">Tab</a>
+                        </li>
+                        <li data-name="tab02">
+                          <a href="#tab">Tab</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- // 탭 버튼 -->
+
+                    <!-- 탭 내용 -->
+                    <div class="tab_conts_box">
+                      <ul>
+                        <li data-name="tab01">tab01에 대한 컨텐츠</li>
+                        <li data-name="tab02">tab02에 대한 컨텐츠</li>
+                      </ul>
+                    </div>
+                    <!-- // 탭 내용 -->
+                  </div>
+                </div>
+              </article>
+              <!-- //Tab Guide -->
+            </div>
+            <!-- //cont_box_area -->
+          </div>
+          <!-- //cont_box -->
+        </section>
+        <!-- //conts_section -->
+        <a href="#container" class="btn_top">상단으로 이동</a>
+      </section>
+      <!-- //container -->
+
+      <!-- footer -->
+      <footer>
+        <p class="guide">Footer</p>
+      </footer>
+      <!-- //footer -->
+    </div>
+    <!-- //wrap -->
+
+    <script src="../assets/js/ui-script.js"></script>
+
+    <script>
+      function dedent(text) {
+        const lines = text.split('\n');
+
+        while (lines.length && lines[0].trim() === '') {
+          lines.shift();
+        }
+        while (lines.length && lines[lines.length - 1].trim() === '') {
+          lines.pop();
+        }
+
+        const indentLengths = lines.filter((line) => line.trim().length > 0).map((line) => line.match(/^\s*/)[0].length);
+        const minIndent = Math.min(...indentLengths);
+
+        return lines.map((line) => line.substring(minIndent)).join('\n');
+      }
+
+      function cleanAttributes(guide) {
+        return guide.replace(/(readonly|disabled|required|checked)(="[^"]*")/g, '$1');
+      }
+
+      $(function () {
+        $('.guide_code').each(function (i) {
+          const guideArea = $(this);
+
+          const clonedGuide = guideArea.clone();
+          clonedGuide.find('a').removeAttr('aria-selected');
+          clonedGuide.find('ul').removeAttr('id role');
+          clonedGuide.find('li').removeAttr('id aria-labelledby role aria-hidden style');
+
+          let guide = clonedGuide.html();
+          guide = cleanAttributes(guide);
+
+          const dedentGuide = dedent(guide);
+
+          $(this).after(
+            $(`<div class="btn_code_view_wrap"><div class="btn_code_view">
+				<a class="btn_guide_pop${i}_open" href="javascript:$('#guide_pop${i}').popup('show');">&lt;/&gt;</a>
+			</div>
+			<section class="modal" id="guide_pop${i}">
+				<div class="modal_wrap guide_modal_wrap">
+					<div class="guide_modal_body pop_ty">
+						<article class="cont">
+							<pre class="prettyprint"><code>${$('<div/>').text(dedentGuide).html()}</code></pre>
+						</article>
+					</div>
+					<button class="pop01_close btn_pop_close" onclick="$('#guide_pop${i}').popup('hide');">팝업 닫기</button>
+				</div>
+			</section></div>`)
+              .hide()
+              .fadeIn(10, function () {
+                $(`.btn_guide_pop${i}_open`)
+                  .mouseenter(function () {
+                    guideArea.addClass('on');
+                  })
+                  .mouseleave(function () {
+                    guideArea.removeClass('on');
+                  });
+                PR.prettyPrint();
+              })
+          );
+        });
+      });
+    </script>
+
+    <!-- Google Prettify syntax highlighting -->
+    <!-- <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?autoload=true&lang=css"></script> -->
+    <script src="guide-resource/run_prettify.js"></script>
+    <style>
+      pre.prettyprint {
+        padding: 15px 25px;
+      }
+    </style>
+  </body>
+</html>

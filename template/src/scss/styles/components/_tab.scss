@@ -1,0 +1,53 @@
+/* Tab */
+.tab_conts_box {
+	> ul {
+		> li {
+			display: none;
+		}
+	}
+}
+
+.tabname_btn_box--category {
+	> ul {
+		display: flex;
+
+		> li {
+			flex: 1;
+
+			> a {
+				position: relative;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+				height: 100%;
+				font-size: 24px;
+				font-weight: 400;
+				color: #7D818A;
+				padding: 0 20px 20px 20px;
+				border-bottom: 1px solid #CCCFD4;
+
+				&:hover {
+					color: #1A1B1C;
+				}
+			}
+
+			&.on {
+				> a {
+					font-weight: 500;
+					color: #1A1B1C;
+
+					&::after {
+						content: '';
+						position: absolute;
+						right: 0;
+						bottom: -1px;
+						left: 0;
+						height: 2px;
+						background-color: #1A1B1C;
+					}
+				}
+			}
+		}
+	}
+}

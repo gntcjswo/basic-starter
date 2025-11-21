@@ -1,11 +1,12 @@
 @use 'variables';
+@use 'mixins';
 
 html {
 	font-size: 100%;
 	font-family: variables.$font-family-base;
 	color: variables.$font-color-base;
 	
-	@include md-max {
+	@include mixins.md-max {
 		font-size: 75%;
 	}
 }

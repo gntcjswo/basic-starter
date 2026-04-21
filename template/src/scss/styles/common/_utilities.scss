@@ -7,41 +7,59 @@
 // Margin & Padding Utilities Generator
 @for $i from 0 through 100 {
   // Margin
-  .m#{$i} { margin: #{$i}px !important; }
-  .mt#{$i} { margin-top: #{$i}px !important; }
-  .mb#{$i} { margin-bottom: #{$i}px !important; }
-  .ml#{$i} { margin-left: #{$i}px !important; }
-  .mr#{$i} { margin-right: #{$i}px !important; }
+  .m#{$i} { margin: #{$i}px; }
+  .\!m#{$i} { margin: #{$i}px !important; }
+  .mt#{$i} { margin-top: #{$i}px; }
+  .\!mt#{$i} { margin-top: #{$i}px !important; }
+  .mb#{$i} { margin-bottom: #{$i}px; }
+  .\!mb#{$i} { margin-bottom: #{$i}px !important; }
+  .ml#{$i} { margin-left: #{$i}px; }
+  .\!ml#{$i} { margin-left: #{$i}px !important; }
+  .mr#{$i} { margin-right: #{$i}px; }
+  .\!mr#{$i} { margin-right: #{$i}px !important; }
   
   // Padding
-  .p#{$i} { padding: #{$i}px !important; }
-  .pt#{$i} { padding-top: #{$i}px !important; }
-  .pb#{$i} { padding-bottom: #{$i}px !important; }
-  .pl#{$i} { padding-left: #{$i}px !important; }
-  .pr#{$i} { padding-right: #{$i}px !important; }
+  .p#{$i} { padding: #{$i}px; }
+  .\!p#{$i} { padding: #{$i}px !important; }
+  .pt#{$i} { padding-top: #{$i}px; }
+  .\!pt#{$i} { padding-top: #{$i}px !important; }
+  .pb#{$i} { padding-bottom: #{$i}px; }
+  .\!pb#{$i} { padding-bottom: #{$i}px !important; }
+  .pl#{$i} { padding-left: #{$i}px; }
+  .\!pl#{$i} { padding-left: #{$i}px !important; }
+  .pr#{$i} { padding-right: #{$i}px; }
+  .\!pr#{$i} { padding-right: #{$i}px !important; }
 
   // Width (px and %)
-  .w#{$i}per { width: #{$i + '%'} !important; }
+  .w#{$i}per { width: #{$i + '%'}; }
+  .\!w#{$i}per { width: #{$i + '%'} !important; }
 
   // Height (px and %)
-  .h#{$i}per { height: #{$i + '%'} !important; }
+  .h#{$i}per { height: #{$i + '%'}; }
+  .\!h#{$i}per { height: #{$i + '%'} !important; }
 
   // Font size
   .fs-#{$i} { font-size: #{$i}px; }
+  .\!fs-#{$i} { font-size: #{$i}px !important; }
 }
 
 @for $i from 0 through 1000 {
   // Width (px)
-  .w#{$i}px { width: #{$i}px !important; }
+  .w#{$i}px { width: #{$i}px; }
+  .\!w#{$i}px { width: #{$i}px !important; }
 
   // Height (px)
-  .h#{$i}px { height: #{$i}px !important; }
+  .h#{$i}px { height: #{$i}px; }
+  .\!h#{$i}px { height: #{$i}px !important; }
 }
 
 // Gap utilities
 @for $i from 0 through 100 {
   // 기본 gap (단일 값)
   .gap#{$i} { 
+    gap: #{$i}px;
+  }
+  .\!gap#{$i} { 
     gap: #{$i}px !important;
   }
 }
@@ -54,6 +72,9 @@ $common-spacing: (0, 4, 8, 10, 12, 16, 20, 24, 28, 30, 32);
   // 수평/수직 gap (2개 값)
   @each $j in $common-spacing {
     .gap#{$i}-#{$j} {
+      gap: #{$i}px #{$j}px;
+    }
+    .\!gap#{$i}-#{$j} {
       gap: #{$i}px #{$j}px !important;
     }
   }
@@ -62,6 +83,9 @@ $common-spacing: (0, 4, 8, 10, 12, 16, 20, 24, 28, 30, 32);
   @each $j in $common-spacing {
     @each $k in $common-spacing {
       .gap#{$i}-#{$j}-#{$k} {
+        gap: #{$i}px #{$j}px #{$k}px;
+      }
+      .\!gap#{$i}-#{$j}-#{$k} {
         gap: #{$i}px #{$j}px #{$k}px !important;
       }
     }
@@ -72,6 +96,9 @@ $common-spacing: (0, 4, 8, 10, 12, 16, 20, 24, 28, 30, 32);
     @each $k in $common-spacing {
       @each $l in $common-spacing {
         .gap#{$i}-#{$j}-#{$k}-#{$l} {
+          gap: #{$i}px #{$j}px #{$k}px #{$l}px;
+        }
+        .\!gap#{$i}-#{$j}-#{$k}-#{$l} {
           gap: #{$i}px #{$j}px #{$k}px #{$l}px !important;
         }
       }
@@ -83,26 +110,41 @@ $common-spacing: (0, 4, 8, 10, 12, 16, 20, 24, 28, 30, 32);
 @mixin responsive-spacing($breakpoint) {
   @for $i from 0 through 100 {
     // Margin
-    .#{variables.$prefix}-#{$breakpoint}-m#{$i} { margin: #{$i}px !important; }
-    .#{variables.$prefix}-#{$breakpoint}-mt#{$i} { margin-top: #{$i}px !important; }
-    .#{variables.$prefix}-#{$breakpoint}-mb#{$i} { margin-bottom: #{$i}px !important; }
-    .#{variables.$prefix}-#{$breakpoint}-ml#{$i} { margin-left: #{$i}px !important; }
-    .#{variables.$prefix}-#{$breakpoint}-mr#{$i} { margin-right: #{$i}px !important; }
+    .#{variables.$prefix}-#{$breakpoint}-m#{$i} { margin: #{$i}px; }
+    .#{variables.$prefix}-#{$breakpoint}-\!m#{$i} { margin: #{$i}px !important; }
+    .#{variables.$prefix}-#{$breakpoint}-mt#{$i} { margin-top: #{$i}px; }
+    .#{variables.$prefix}-#{$breakpoint}-\!mt#{$i} { margin-top: #{$i}px !important; }
+    .#{variables.$prefix}-#{$breakpoint}-mb#{$i} { margin-bottom: #{$i}px; }
+    .#{variables.$prefix}-#{$breakpoint}-\!mb#{$i} { margin-bottom: #{$i}px !important; }
+    .#{variables.$prefix}-#{$breakpoint}-ml#{$i} { margin-left: #{$i}px; }
+    .#{variables.$prefix}-#{$breakpoint}-\!ml#{$i} { margin-left: #{$i}px !important; }
+    .#{variables.$prefix}-#{$breakpoint}-mr#{$i} { margin-right: #{$i}px; }
+    .#{variables.$prefix}-#{$breakpoint}-\!mr#{$i} { margin-right: #{$i}px !important; }
     
     // Padding
-    .#{variables.$prefix}-#{$breakpoint}-p#{$i} { padding: #{$i}px !important; }
-    .#{variables.$prefix}-#{$breakpoint}-pt#{$i} { padding-top: #{$i}px !important; }
-    .#{variables.$prefix}-#{$breakpoint}-pb#{$i} { padding-bottom: #{$i}px !important; }
-    .#{variables.$prefix}-#{$breakpoint}-pl#{$i} { padding-left: #{$i}px !important; }
-    .#{variables.$prefix}-#{$breakpoint}-pr#{$i} { padding-right: #{$i}px !important; }
+    .#{variables.$prefix}-#{$breakpoint}-p#{$i} { padding: #{$i}px; }
+    .#{variables.$prefix}-#{$breakpoint}-\!p#{$i} { padding: #{$i}px !important; }
+    .#{variables.$prefix}-#{$breakpoint}-pt#{$i} { padding-top: #{$i}px; }
+    .#{variables.$prefix}-#{$breakpoint}-\!pt#{$i} { padding-top: #{$i}px !important; }
+    .#{variables.$prefix}-#{$breakpoint}-pb#{$i} { padding-bottom: #{$i}px; }
+    .#{variables.$prefix}-#{$breakpoint}-\!pb#{$i} { padding-bottom: #{$i}px !important; }
+    .#{variables.$prefix}-#{$breakpoint}-pl#{$i} { padding-left: #{$i}px; }
+    .#{variables.$prefix}-#{$breakpoint}-\!pl#{$i} { padding-left: #{$i}px !important; }
+    .#{variables.$prefix}-#{$breakpoint}-pr#{$i} { padding-right: #{$i}px; }
+    .#{variables.$prefix}-#{$breakpoint}-\!pr#{$i} { padding-right: #{$i}px !important; }
 
     // Width & Height (percentage)
-    .#{variables.$prefix}-#{$breakpoint}-w#{$i}per { width: #{$i + '%'} !important; }
-    .#{variables.$prefix}-#{$breakpoint}-h#{$i}per { height: #{$i + '%'} !important; }
+    .#{variables.$prefix}-#{$breakpoint}-w#{$i}per { width: #{$i + '%'}; }
+    .#{variables.$prefix}-#{$breakpoint}-\!w#{$i}per { width: #{$i + '%'} !important; }
+    .#{variables.$prefix}-#{$breakpoint}-h#{$i}per { height: #{$i + '%'}; }
+    .#{variables.$prefix}-#{$breakpoint}-\!h#{$i}per { height: #{$i + '%'} !important; }
 
     // Gap utilities
     // 기본 gap (단일 값)
     .#{variables.$prefix}-#{$breakpoint}-gap#{$i} { 
+      gap: #{$i}px; 
+    }
+    .#{variables.$prefix}-#{$breakpoint}-\!gap#{$i} { 
       gap: #{$i}px !important; 
     }
   }
@@ -112,6 +154,9 @@ $common-spacing: (0, 4, 8, 10, 12, 16, 20, 24, 28, 30, 32);
     // 수평/수직 gap (2개 값)
     @each $j in $common-spacing {
       .#{variables.$prefix}-#{$breakpoint}-gap#{$i}-#{$j} {
+        gap: #{$i}px #{$j}px;
+      }
+      .#{variables.$prefix}-#{$breakpoint}-\!gap#{$i}-#{$j} {
         gap: #{$i}px #{$j}px !important;
       }
     }
@@ -120,6 +165,9 @@ $common-spacing: (0, 4, 8, 10, 12, 16, 20, 24, 28, 30, 32);
     @each $j in $common-spacing {
       @each $k in $common-spacing {
         .#{variables.$prefix}-#{$breakpoint}-gap#{$i}-#{$j}-#{$k} {
+          gap: #{$i}px #{$j}px #{$k}px;
+        }
+        .#{variables.$prefix}-#{$breakpoint}-\!gap#{$i}-#{$j}-#{$k} {
           gap: #{$i}px #{$j}px #{$k}px !important;
         }
       }
@@ -130,6 +178,9 @@ $common-spacing: (0, 4, 8, 10, 12, 16, 20, 24, 28, 30, 32);
       @each $k in $common-spacing {
         @each $l in $common-spacing {
           .#{variables.$prefix}-#{$breakpoint}-gap#{$i}-#{$j}-#{$k}-#{$l} {
+            gap: #{$i}px #{$j}px #{$k}px #{$l}px;
+          }
+          .#{variables.$prefix}-#{$breakpoint}-\!gap#{$i}-#{$j}-#{$k}-#{$l} {
             gap: #{$i}px #{$j}px #{$k}px #{$l}px !important;
           }
         }
@@ -139,8 +190,10 @@ $common-spacing: (0, 4, 8, 10, 12, 16, 20, 24, 28, 30, 32);
 
   @for $i from 0 through 1000 {
     // Width & Height (pixels)
-    .#{variables.$prefix}-#{$breakpoint}-w#{$i}px { width: #{$i}px !important; }
-    .#{variables.$prefix}-#{$breakpoint}-h#{$i}px { height: #{$i}px !important; }
+    .#{variables.$prefix}-#{$breakpoint}-w#{$i}px { width: #{$i}px; }
+    .#{variables.$prefix}-#{$breakpoint}-\!w#{$i}px { width: #{$i}px !important; }
+    .#{variables.$prefix}-#{$breakpoint}-h#{$i}px { height: #{$i}px; }
+    .#{variables.$prefix}-#{$breakpoint}-\!h#{$i}px { height: #{$i}px !important; }
   }
 }
 
@@ -148,6 +201,9 @@ $common-spacing: (0, 4, 8, 10, 12, 16, 20, 24, 28, 30, 32);
 @mixin responsive-font($breakpoint) {
   @each $size in (12, 14, 16, 20, 24, 28, 32, 36, 40, 44, 48) {
     .#{variables.$prefix}-#{$breakpoint}-fs-#{$size} {
+      font-size: #{$size}px;
+    }
+    .#{variables.$prefix}-#{$breakpoint}-\!fs-#{$size} {
       font-size: #{$size}px !important;
     }
   }
@@ -280,7 +336,7 @@ $max-breakpoint-names: ('xl-max', 'lg-max', 'md-max', 'sm-max');
 	-ms-overflow-style: none;
 }
 
-.sr_only {
+.sr-only {
 	position: absolute;
 	width: 1px;
 	height: 1px;

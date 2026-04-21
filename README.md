@@ -1,4 +1,4 @@
-# my-starter
+# basic-starter
 
 > HTML·SCSS 퍼블리싱용 보일러플레이트를 한 번에 복사해 주는 `npx` 스캐폴드입니다.  
 > English: A small **npx** scaffold that copies an HTML + Sass publishing starter into a new folder.
@@ -26,7 +26,7 @@
 GitHub에 이 저장소를 올린 뒤, 원하는 프로젝트 폴더 이름을 마지막 인자로 넘깁니다.
 
 ```bash
-npx github:woosung/my-starter my-project
+npx github:gntcjswo/basic-starter my-project
 ```
 
 실행이 끝나면 현재 작업 디렉터리 아래에 `my-project` 폴더가 생기고, 그 안에 `template/` 내용이 그대로 복사됩니다.
@@ -36,7 +36,7 @@ npx github:woosung/my-starter my-project
 npm·npx 버전에 따라 GitHub 패키지의 **바이너리 이름**을 명시해야 할 수 있습니다.
 
 ```bash
-npx github:woosung/my-starter create-my-starter my-project
+npx github:gntcjswo/basic-starter create-my-starter my-project
 ```
 
 여기서 `create-my-starter`는 루트 `package.json`의 `bin` 필드에 정의된 명령 이름입니다.
@@ -79,8 +79,8 @@ pnpm dev
 
 ## 오픈 소스·포트폴리오
 
-- 저장소 URL 예시: `https://github.com/woosung/my-starter`
-- 포트폴리오에는 위 링크와 함께 **“`npx github:woosung/my-starter <프로젝트명>`으로 퍼블리싱 스타터를 배포”** 같은 한 줄 설명을 넣으면 의도가 잘 전달됩니다.
+- 저장소 URL: `https://github.com/gntcjswo/basic-starter`
+- 포트폴리오에는 위 링크와 함께 **“`npx github:gntcjswo/basic-starter <프로젝트명>`으로 퍼블리싱 스타터를 배포”** 같은 한 줄 설명을 넣으면 의도가 잘 전달됩니다.
 - 공개 시 **LICENSE** 파일과 `package.json`의 `license`·`repository` 필드를 채워 두면 신뢰도가 올라갑니다.
 
 ## 라이선스
